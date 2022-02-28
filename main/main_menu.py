@@ -1,7 +1,6 @@
 from main.crazy_eights import c8_game
 from main.go_fish import gf_game
 from main.war import war_game
-from main.checkers import checkers_game
 from util_functions import *
 from constants import *
 
@@ -19,11 +18,6 @@ def play_crazy_eights():
 def play_war():
     show_war_menu()
     war_game.make_game()
-
-
-def play_checkers():
-    show_checkers_menu()
-    checkers_game.make_game()
 
 
 def show_about():
@@ -57,8 +51,6 @@ def handle_input(input_):
         case 3:
             play_war()
         case 4:
-            play_checkers()
-        case 5:
             show_about()
         case _:
             print(not_an_option.format(input_))

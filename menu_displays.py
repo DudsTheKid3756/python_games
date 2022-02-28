@@ -8,8 +8,7 @@ def show_main_menu():
                     1: Play Go Fish!
                     2: Play Crazy 8's
                     3: Play War
-                    4: Play Checkers
-                    5: About
+                    4: About
 {'~' * 60}
     ''')
 
