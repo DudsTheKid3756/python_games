@@ -2,12 +2,8 @@ import random
 
 from main.setup.card_games import card
 
-with open("strings.txt") as f:
-    lines = f.readlines()
-
-suites = [lines[i].strip() for i in range(1, 5)]
-words = [lines[i].strip() for i in range(7, 20)]
-values = [(words.index(word) + 1, word) for word in words]
+values = card.values
+suites = card.suites
 Card = card.Card
 
 
