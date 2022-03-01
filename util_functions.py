@@ -1,7 +1,13 @@
 from time import sleep
+import random
 
 from menu_displays import *
 from constants import *
+
+
+def shuffle(deck):
+    random.shuffle(deck)
+    return deck
 
 
 def get_menu_input(message):

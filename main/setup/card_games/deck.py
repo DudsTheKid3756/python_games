@@ -1,19 +1,18 @@
-import random
+class Deck:
+    lines = []
+    suites = []
 
-from main.setup.card_games import card
+    class Card:
+        def __init__(self, suite, value):
+            self.suite = suite
+            self.value = value
+            self.name = f'{value[1]} of {suite}'
 
-values = card.values
-suites = card.suites
-Card = card.Card
+    def __init__(self):
+        with open("C:/Users/curly/Desktop/Code/pythonGames/main/setup/card_games/strings.txt") as f:
+            lines = f.readlines()
 
-
-def shuffle(deck):
-    """shuffles deck"""
-    random.shuffle(deck)
-    return deck
-
-
-def create_deck():
-    """creates deck of shuffled cards"""
-    deck = [Card(suite, value) for suite in suites for value in values]
-    return shuffle(deck)
+        suites = [lines[i].strip() for i in range(1, 5)]
+        words = [lines[i].strip() for i in range(7, 20)]
+        values = [(words.index(word) + 1, word) for word in words]
+        self.deck = [self.Card(suite, value) for suite in suites for value in values]

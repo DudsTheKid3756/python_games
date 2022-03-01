@@ -1,16 +1,15 @@
-import random
-
-from main.setup.card_games import hands, deck, card
+from main.setup.card_games import hands, deck
 from util_functions import *
 
-
+deck = deck.Deck()
+suites = deck.suites
 stock, _hands_, player_hand, cpu_hand, starter_pile = [[] for _ in range(5)]
 current_suite = ""
 
 
 def initialize():
     global stock, _hands_, player_hand, cpu_hand
-    stock = deck.create_deck()
+    stock = shuffle(deck.deck)
     _hands_ = hands.deal_hands(stock)
     player_hand = [i for i in _hands_[0]]
     cpu_hand = [i for i in _hands_[1]]
@@ -36,7 +35,7 @@ def handle_low_stock():
     for count in range(1, len(starter_pile) - 1):
         stock.append(starter_pile[1])
         starter_pile.pop(1)
-    deck.shuffle(stock)
+    shuffle(stock)
 
 
 def draw_card(hand):
@@ -120,8 +119,8 @@ Enter a response> '''))
             print('~' * 20)
             suite_decided = False
             while not suite_decided:
-                for suite in card.suites:
-                    print(f'{list(card.suites).index(suite)}: {suite}\r')
+                for suite in suites:
+                    print(f'{list(suites).index(suite)}: {suite}\r')
                 try:
                     response = int(input('Pick a suite to change to!> '))
                     if response > 3:
@@ -129,7 +128,7 @@ Enter a response> '''))
                         print('Please pick a valid suite number!')
                     else:
                         suite_decided = True
-                        current_suite = list(card.suites)[response]
+                        current_suite = list(suites)[response]
                         handle_play_card(player_hand, card_to_play)
                         can_play_card = True
                         break
@@ -181,7 +180,7 @@ def cpu_turn():
             while not turn_complete:
                 if play_card == 0:
                     if random_card.value[0] == 8:
-                        current_suite = random.choice(list(card.suites))
+                        current_suite = random.choice(list(suites))
                         print(f'I played an 8! I change the suite to {current_suite}')
                     else:
                         print(f'I played a {cpu_hand[card_to_play].name}!')

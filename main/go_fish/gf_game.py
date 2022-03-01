@@ -1,5 +1,4 @@
 import getpass
-import random
 
 from main.setup.card_games import hands, deck
 from util_functions import *
@@ -10,7 +9,7 @@ _deck_, _hands_, player_hand, cpu_hand, player_matches, cpu_matches = [[] for _ 
 
 def initialize():
     global _deck_, _hands_, player_hand, cpu_hand
-    _deck_ = deck.create_deck()
+    _deck_ = shuffle(deck.Deck().deck)
     _hands_ = hands.deal_hands(_deck_)
     player_hand = [i for i in _hands_[0]]
     cpu_hand = [i for i in _hands_[1]]

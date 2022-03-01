@@ -1,5 +1,3 @@
-import random
-
 from main.setup.card_games import hands, deck
 from util_functions import *
 from constants import *
@@ -10,7 +8,7 @@ current_round = 1
 
 def initialize():
     global _hands_, player_hand, cpu_hand
-    _hands_ = hands.deal_hands(deck.create_deck(), 26)
+    _hands_ = hands.deal_hands(shuffle(deck.Deck().deck), 26)
     player_hand = [i for i in _hands_[0]]
     cpu_hand = [i for i in _hands_[1]]
 
@@ -99,7 +97,7 @@ CPU card: {cpu_card.name}
 {"You won the wager!" if war_winner == 0 else "You lost the wager :("}
 {'~' * 40}
 ''')
-    return deck.shuffle(war_debt), war_winner
+    return shuffle(war_debt), war_winner
 
 
 def battle():
