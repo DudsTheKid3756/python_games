@@ -9,7 +9,7 @@ class Deck:
             self.name = f'{value[1]} of {suite}'
 
     def __init__(self):
-        with open("C:/Users/curly/Desktop/Code/pythonGames/main/setup/card_games/strings.txt") as f:
+        with open("C:/Users/duds_the_kid_3756/Desktop/Code/python_games/main/setup/card_games/strings.txt") as f:
             lines = f.readlines()
 
         suites = [lines[i].strip() for i in range(1, 5)]

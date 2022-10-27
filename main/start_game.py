@@ -1,13 +1,20 @@
 import logging
 import traceback
 
-from main_menu import play_games
+import main_menu
 from menu_displays import *
 
+
 # noinspection PyBroadException
-try:
-    show_main_menu()
-    play_games()
-except Exception as e:
-    logging.error(traceback.format_exc())
-    exit(0)
+
+def main():
+    try:
+        show_main_menu()
+        main_menu.play_games()
+    except Exception:
+        logging.error(traceback.format_exc())
+        exit(0)
+
+
+if __name__ == '__main__':
+    main()
