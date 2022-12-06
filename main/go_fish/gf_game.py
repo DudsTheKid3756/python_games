@@ -1,4 +1,4 @@
-import getpass
+import pwinput
 
 from main.setup.card_games import hands, deck
 from util_functions import *
@@ -62,7 +62,7 @@ def admin_access():
     and both player's matches, protected by password
     """
     # TODO: format with separate menu to select from
-    password = getpass.getpass(prompt='Input admin password: ', stream=None)
+    password = pwinput.pwinput(prompt='Input admin password: ', mask='*')
     if password == 'TDuds3756$':
         print('~' * 40)
         print('Deck: ')

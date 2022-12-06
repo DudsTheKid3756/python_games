@@ -1,7 +1,7 @@
 import logging
 import traceback
 
-import main_menu
+import main.main_menu as main_menu
 from menu_displays import *
 
 
