@@ -1,3 +1,6 @@
+import os
+
+
 class Deck:
     lines = []
     suites = []
@@ -9,7 +12,10 @@ class Deck:
             self.name = f'{value[1]} of {suite}'
 
     def __init__(self):
-        with open("C:/Users/duds_the_kid_3756/Desktop/Code/python_games/main/setup/card_games/strings.txt") as f:
+        script_dir = os.path.dirname(__file__)
+        rel_path = "strings.txt"
+        abs_file_path = os.path.join(script_dir, rel_path)
+        with open(abs_file_path, 'r') as f:
             lines = f.readlines()
 
         self.suites = [lines[i].strip() for i in range(1, 5)]
