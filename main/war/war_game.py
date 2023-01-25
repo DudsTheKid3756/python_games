@@ -40,6 +40,7 @@ def handle_battle_win(winner_hand, loser_hand, cards_to_move):
 
 
 def prep_war(hand):
+    # TODO: Check this, cpu hand is not using correct value for war comparison
     return [hand.pop(0) for _ in range(5)] \
         if len(hand) > 5 else [hand.pop(0) for _ in range(len(hand) - 1)] \
         if len(hand) > 1 else []
@@ -64,6 +65,8 @@ CPU card: {cpu_card.name}
         ''')
         war_debt = [*player_wager, *cpu_wager]
         if len(player_hand) > 1 and len(cpu_hand) > 1:
+            # TODO: Fix comparison values. Currently checks initial card
+            #  played during battle phase, needs to check last value in hand instead
             if player_card.value[0] != cpu_card.value[0]:
                 if player_card.value[0] > cpu_card.value[0]:
                     war_winner = 0
