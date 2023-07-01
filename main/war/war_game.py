@@ -14,8 +14,8 @@ def initialize():
 
 
 def display_round_info(message):
-    player_card = player_hand[0].name
-    cpu_card = cpu_hand[0].name
+    player_card = player_hand[0].name  # 4 of hearts
+    cpu_card = cpu_hand[0].name  # 2 of clubs
     print(f'''
 Round: {current_round}
 
@@ -40,10 +40,12 @@ def handle_battle_win(winner_hand, loser_hand, cards_to_move):
 
 
 def prep_war(hand):
-    # TODO: Check this, cpu hand is not using correct value for war comparison
-    return [hand.pop(0) for _ in range(5)] \
-        if len(hand) > 5 else [hand.pop(0) for _ in range(len(hand) - 1)] \
-        if len(hand) > 1 else []
+    # TODO: TEST this, cpu hand is not using correct value for war comparison
+    if len(hand) > 5:
+        return [hand.pop(0) for _ in range(5)]
+    elif len(hand) > 1:
+        return [hand.pop(0) for _ in range(len(hand) - 1)]
+    return []
 
 
 def declare_war():
@@ -64,11 +66,11 @@ Player card: {player_card.name}
 CPU card: {cpu_card.name}
         ''')
         war_debt = [*player_wager, *cpu_wager]
+        player_card_to_play = player_wager[-1]
+        cpu_card_to_play = cpu_wager[-1]
         if len(player_hand) > 1 and len(cpu_hand) > 1:
-            # TODO: Fix comparison values. Currently checks initial card
-            #  played during battle phase, needs to check last value in hand instead
-            if player_card.value[0] != cpu_card.value[0]:
-                if player_card.value[0] > cpu_card.value[0]:
+            if player_card_to_play.value[0] != cpu_card_to_play.value[0]:
+                if player_card_to_play.value[0] > cpu_card_to_play.value[0]:
                     war_winner = 0
                 else:
                     war_winner = 1
@@ -79,7 +81,7 @@ CPU card: {cpu_card.name}
                 war_round += 1
         else:
             if len(player_hand) == 1:
-                if player_card.value[0] > cpu_card.value[0]:
+                if player_card_to_play.value[0] > cpu_card_to_play.value[0]:
                     war_winner = 0
                     do_war = False
                     war_debt.append(player_card)
@@ -88,7 +90,7 @@ CPU card: {cpu_card.name}
                     print('You lost :(')
                     exec(default_menu.format(exit_options[0], exit_options[1]))
             else:
-                if cpu_card.value[0] > player_card.value[0]:
+                if cpu_card_to_play.value[0] > player_card_to_play.value[0]:
                     war_winner = 1
                     do_war = False
                     war_debt.append(player_card)
