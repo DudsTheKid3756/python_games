@@ -61,6 +61,6 @@ def clear_console():
 def exit_sequence():
     print('Closing program in:')
     for num in range(1, 6).__reversed__():
-        print(num)
+        print(num, flush=True)
         sleep(1)
     exit(0)

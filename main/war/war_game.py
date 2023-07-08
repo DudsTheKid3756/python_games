@@ -14,8 +14,8 @@ def initialize():
 
 
 def display_round_info(message):
-    player_card = player_hand[0].name  # 4 of hearts
-    cpu_card = cpu_hand[0].name  # 2 of clubs
+    player_card = player_hand[0].name
+    cpu_card = cpu_hand[0].name
     print(f'''
 Round: {current_round}
 
@@ -40,7 +40,6 @@ def handle_battle_win(winner_hand, loser_hand, cards_to_move):
 
 
 def prep_war(hand):
-    # TODO: TEST this, cpu hand is not using correct value for war comparison
     if len(hand) > 5:
         return [hand.pop(0) for _ in range(5)]
     elif len(hand) > 1:
@@ -64,7 +63,8 @@ War Round: {war_round}
 
 Player card: {player_card.name}
 CPU card: {cpu_card.name}
-        ''')
+        ''', flush=True)
+        sleep(1)
         war_debt = [*player_wager, *cpu_wager]
         player_card_to_play = player_wager[-1]
         cpu_card_to_play = cpu_wager[-1]
@@ -101,7 +101,8 @@ CPU card: {cpu_card.name}
     print(f'''
 {"You won the wager!" if war_winner == 0 else "You lost the wager :("}
 {'~' * 40}
-''')
+''', flush=True)
+    sleep(1)
     return shuffle(war_debt), war_winner
 
 
@@ -127,6 +128,8 @@ def battle():
                     if war_results[1] == 0 \
                     else handle_battle_win(cpu_hand, player_hand, war_results[0])
             current_round += 1
+            print(flush=True)
+            sleep(.5)
         else:
             if len(player_hand) == 0:
                 print('You lost :(')

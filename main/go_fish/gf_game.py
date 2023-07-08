@@ -221,16 +221,11 @@ def cpu_turn():
     handle_empty_hand(cpu_hand, player_hand)
     random_card = random.choice(cpu_hand)
     card_call = random_card.value[0]
-    print(f'Do you have any {random_card.value[1]}s?')
+    print(f'Do you have any {random_card.value[1]}s?', flush=True)
     sleep(.5)
-    print('.')
-    sleep(.5)
-    print('.')
-    sleep(.5)
-    print('.')
-    sleep(.5)
-    print('.')
-    sleep(.5)
+    for _ in range(4):
+        print('.', flush=True)
+        sleep(.5)
     handle_card_call(
         player_hand,
         cpu_hand,

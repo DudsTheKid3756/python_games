@@ -1,3 +1,5 @@
+import time
+
 from main.setup.card_games import hands, deck
 from util_functions import *
 
@@ -151,16 +153,11 @@ Enter a response> '''))
 
 
 def cpu_turn():
-    print('My turn!')
+    print('My turn!', flush=True)
     sleep(.5)
-    print('.')
-    sleep(.5)
-    print('.')
-    sleep(.5)
-    print('.')
-    sleep(.5)
-    print('.')
-    sleep(.5)
+    for _ in range(4):
+        print('.', flush=True)
+        sleep(.5)
     stop_play = False
     card_was_played = False
     global current_suite
