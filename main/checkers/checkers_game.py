@@ -1,25 +1,17 @@
-from main.setup.board import *
 from util_functions import *
+from main.setup.board import red_empty_spot, black_empty_spot
 
-mk_cpu = make_cpu_side()
-mk_plr = make_player_side()
-
-cpu_side = [
-    (x.color % (bg(0), attr(0)) if x.__class__ == Piece else x)
-    for i in mk_cpu for x in i
-]
-player_side = [
-    (x.color % (bg(0), attr(0)) if x.__class__ == Piece else x)
-    for i in mk_plr for x in i
-]
-
-# cpu_side = [
-#     x.color if x.__class__ == Piece else x for i in mk_cpu for x in i
-# ]
-#
-# player_side = [
-#     x.color if x.__class__ == Piece else x for i in mk_plr for x in i
-# ]
+setup = []
+for i in range(8):
+    if bool(i % 2):
+        setup.append(red_empty_spot)
+    else:
+        setup.append(black_empty_spot)
+for i in range(8):
+    if bool(i % 2):
+        setup.append(black_empty_spot)
+    else:
+        setup.append(red_empty_spot)
 
 
 def view_board():
@@ -33,8 +25,7 @@ def view_board():
 {}{}{}{}{}{}{}{}
 {}{}{}{}{}{}{}{}
     '''.format(
-            *cpu_side,
-            *player_side
+            *setup * 4
         )
     )
 
